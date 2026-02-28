@@ -1,49 +1,86 @@
-# ECM Local Suite - v2 Bootstrap
+# ECM Local Suite - v2
 
-This repository contains an initial scaffold aligned with the ECM Local Suite v2 desktop-native specification.
+Desktop-native ECM suite (Tauri + React + Fastify) aligned to the Explorer-style specification.
 
-## Workspace layout
+## Workspace
 
-- `apps/ui`: React + TypeScript UI with Explorer-style layout
-- `apps/api`: Fastify TypeScript backend (local loopback API)
-- `apps/desktop`: Tauri Rust shell with placeholder IPC commands
-- `packages/shared`: shared types used across apps
-- `docs`: technical notes and implementation planning
+- `apps/ui`: React Explorer UI (tree/content/detail, tabs, global search overlay)
+- `apps/api`: Fastify local API with seeded ECM domain data and document operations
+- `apps/desktop`: Tauri shell + IPC commands (`dialog`, `notify`, `fs`, `tray`)
+- `packages/shared`: shared types between UI and API
+- `docs`: planning and architecture notes
 
-## Quick start
+## Prerequisites
 
-1. Install dependencies:
+- Node.js 20+
+- pnpm 8+
+- Rust stable toolchain (for Tauri checks/build)
+
+## Development
+
+Install dependencies:
 
 ```bash
 pnpm install
 ```
 
-2. Run UI:
-
-```bash
-pnpm dev:ui
-```
-
-3. Run API:
+Run API:
 
 ```bash
 pnpm dev:api
 ```
 
-## Current scope
+Run UI (in another terminal):
 
-This bootstrap provides:
+```bash
+pnpm dev:ui
+```
 
-- Explorer desktop UI skeleton (menu, toolbar, tree/content/detail, status bar)
-- Local API health endpoints on `127.0.0.1:3001`
-- Tauri command surface placeholder for OS operations
+Run desktop shell (optional):
 
-## Next implementation phases
+```bash
+pnpm dev:desktop
+```
 
-1. Domain model and Prisma schema (SQLite default)
-2. Repository/document APIs with auth and ACL
-3. Virtualized content panel + filtering/sorting
-4. Check-in/check-out and version history
-5. Workflow engine integration
-6. Search index and global search overlay
+## Validation
+
+Typecheck all:
+
+```bash
+pnpm typecheck
+```
+
+Build all JS packages:
+
+```bash
+pnpm build
+```
+
+Run automated tests:
+
+```bash
+pnpm test
+```
+
+Check desktop Rust crate:
+
+```bash
+cargo check -p ecm-desktop
+```
+
+## Key API endpoints
+
+- `GET /api/v1/health`
+- `GET /api/v1/repositories/tree`
+- `GET /api/v1/repositories/:nodeId/content`
+- `GET /api/v1/documents/:documentId`
+- `PATCH /api/v1/documents/:documentId`
+- `POST /api/v1/documents/:documentId/comments`
+- `POST /api/v1/documents/:documentId/check-out`
+- `POST /api/v1/documents/:documentId/check-in`
+- `DELETE /api/v1/documents/:documentId`
+- `POST /api/v1/documents/:documentId/restore`
+- `GET /api/v1/search/global`
+- `GET /api/v1/workflow/tasks/my`
+- `GET /api/v1/dashboard/summary`
 

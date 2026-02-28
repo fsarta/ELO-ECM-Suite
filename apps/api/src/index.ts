@@ -1,27 +1,7 @@
-import Fastify from "fastify";
-
-const app = Fastify({
-  logger: true
-});
-
-app.get("/api/v1/health", async () => {
-  return {
-    service: "ecm-api",
-    status: "ok",
-    timestamp: new Date().toISOString()
-  };
-});
-
-app.get("/api/v1/system/info", async () => {
-  return {
-    mode: "local",
-    ui: "desktop-explorer",
-    apiVersion: "v1",
-    address: "127.0.0.1:3001"
-  };
-});
+import { buildApp } from "./app";
 
 const start = async (): Promise<void> => {
+  const app = await buildApp();
   try {
     await app.listen({
       port: 3001,
@@ -34,3 +14,4 @@ const start = async (): Promise<void> => {
 };
 
 void start();
+

@@ -8,7 +8,8 @@ pub struct FileSelection {
 }
 
 #[tauri::command]
-pub async fn dialog_open_file() -> Option<FileSelection> {
+pub async fn dialog_open_file(filters: Option<Vec<String>>) -> Option<FileSelection> {
+    let _ = filters;
     None
 }
 
@@ -18,7 +19,7 @@ pub struct SaveSelection {
 }
 
 #[tauri::command]
-pub async fn dialog_save_file() -> Option<SaveSelection> {
+pub async fn dialog_save_file(default_name: Option<String>) -> Option<SaveSelection> {
+    let _ = default_name;
     None
 }
-
