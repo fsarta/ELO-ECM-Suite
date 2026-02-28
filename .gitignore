@@ -1,0 +1,15 @@
+node_modules/
+.pnpm-store/
+dist/
+build/
+.turbo/
+.DS_Store
+Thumbs.db
+*.log
+*.sqlite
+*.db
+.env
+.env.local
+target/
+Cargo.lock
+

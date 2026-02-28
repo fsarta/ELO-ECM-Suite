@@ -1,0 +1,19 @@
+{
+  "name": "ecm-local-suite",
+  "version": "0.1.0",
+  "private": true,
+  "description": "ECM Local Suite v2 desktop-native monorepo bootstrap",
+  "scripts": {
+    "dev:ui": "pnpm --filter @ecm/ui dev",
+    "dev:api": "pnpm --filter @ecm/api dev",
+    "build:ui": "pnpm --filter @ecm/ui build",
+    "build:api": "pnpm --filter @ecm/api build",
+    "typecheck": "turbo run typecheck"
+  },
+  "devDependencies": {
+    "turbo": "^2.5.0",
+    "typescript": "^5.8.2"
+  },
+  "packageManager": "pnpm@8.15.8"
+}
+

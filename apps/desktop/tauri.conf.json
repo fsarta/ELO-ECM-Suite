@@ -1,0 +1,35 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "ECM Local Suite",
+  "version": "0.1.0",
+  "identifier": "com.ecm.localsuite",
+  "build": {
+    "beforeDevCommand": "pnpm --filter @ecm/ui dev",
+    "beforeBuildCommand": "pnpm --filter @ecm/ui build",
+    "frontendDist": "../ui/dist",
+    "devUrl": "http://localhost:5173"
+  },
+  "app": {
+    "windows": [
+      {
+        "title": "ECM Local Suite",
+        "width": 1440,
+        "height": 900,
+        "resizable": true
+      }
+    ],
+    "security": {
+      "csp": null
+    }
+  },
+  "bundle": {
+    "active": false,
+    "targets": "all",
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/icon.ico",
+      "icons/icon.icns"
+    ]
+  }
+}
